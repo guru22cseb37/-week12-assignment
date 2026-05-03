@@ -30,7 +30,7 @@ pipeline {
                 echo 'Running SonarQube static code analysis...'
                 withSonarQubeEnv('SonarQube') { 
                     withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
-                        sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner -Dsonar.login=${SONAR_TOKEN}"
+                        sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner -Dsonar.login=\$SONAR_TOKEN"
                     }
                 }
             }
