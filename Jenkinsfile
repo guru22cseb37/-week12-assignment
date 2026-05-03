@@ -28,8 +28,10 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 echo 'Running SonarQube static code analysis...'
-                withSonarQubeEnv('SonarQube') { // 'SonarQube' must match the name configured in Jenkins System config
-                    sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner"
+                withSonarQubeEnv('SonarQube') { 
+                    withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+                        sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner -Dsonar.login=${SONAR_TOKEN}"
+                    }
                 }
             }
         }
