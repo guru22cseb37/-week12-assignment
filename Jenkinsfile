@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // You MUST replace 'yourdockerhubusername' with your actual DockerHub username
-        DOCKER_IMAGE = 'guru22cseb37/cicd-pipeline-app'
+        DOCKER_IMAGE = 'guru784/cicd-pipeline-app'
         DOCKER_TAG = "v${env.BUILD_NUMBER}"
         SONAR_SCANNER_HOME = tool 'SonarQubeScanner'
     }
