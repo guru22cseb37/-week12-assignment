@@ -68,11 +68,4 @@ During development, we conquered several high-level integration hurdles:
 *   **Network Deadlock Elimination**: Bypassed asynchronous webhook requirements by switching to synchronous scanner polling.
 *   **Registry Synchronization**: Unified naming conventions across local builds and global registries for zero-friction distribution.
 
----
 
-## 👨‍💻 Author
-**GURU**  
-*Cloud Infrastructure & DevOps Engineer*
-
----
-*This project was completed as part of the Week 12 Capstone Assignment.*
