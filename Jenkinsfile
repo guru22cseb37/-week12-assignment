@@ -28,10 +28,14 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 echo 'Running SonarQube static code analysis...'
-                sh """
-                    export SONAR_TOKEN='sqp_86b146665e364347b141e427893d0fde8e9cc2ed'
-                    ${SONAR_SCANNER_HOME}/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-server:9000
-                """
+                withSonarQubeEnv('SonarQube') {
+                    sh """
+                        unset SONAR_TOKEN
+                        unset SONAR_AUTH_TOKEN
+                        export SONAR_TOKEN='sqp_86b146665e364347b141e427893d0fde8e9cc2ed'
+                        ${SONAR_SCANNER_HOME}/bin/sonar-scanner
+                    """
+                }
             }
         }
 
