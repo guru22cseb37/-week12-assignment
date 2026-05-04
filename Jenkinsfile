@@ -28,10 +28,8 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 echo 'Running SonarQube static code analysis...'
-                withSonarQubeEnv('SonarQube') { 
-                    withCredentials([string(credentialsId: 'sonar-token', variable: 'MY_SONAR_TOKEN')]) {
-                        sh "unset SONAR_TOKEN && ${SONAR_SCANNER_HOME}/bin/sonar-scanner -Dsonar.token=\$MY_SONAR_TOKEN"
-                    }
+                withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+                    sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-server:9000 -Dsonar.token=\$SONAR_TOKEN"
                 }
             }
         }
